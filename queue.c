@@ -1,90 +1,73 @@
 #include "lib.h"
 
-
-void queue_init(queue *q)
-{
+void queue_init(queue *q) {
   node *a,*b;
   a=NULL;b=NULL;
   q->front=a;
   q->rear=b;
 }
 
-void queue_enqueue(queue *q, unsigned e)
-{
+void queue_enqueue(queue *q, unsigned e) {
   node *temp;
   temp = (struct node*)malloc(sizeof(struct node));
-temp->link=NULL;
-temp->Data=e;
-if(q->rear==NULL)
-{
-  q->front=temp;
-  q->rear=temp;
-}
-else
-{
-  q->rear->link=temp;
-  q->rear=temp;
-}
+  temp->link=NULL;
+  temp->Data=e;
+  if(q->rear==NULL) {
+    q->front=temp;
+    q->rear=temp;
+  }
+  else {
+    q->rear->link=temp;
+    q->rear=temp;
+  }
 }
 
-int queue_dequeue(queue *q)
-{
-
+int queue_dequeue(queue *q) {
   node *temp;
   temp=q->front;
-  if(q->front==NULL)
-  {
+  if(q->front==NULL) {
     q-> front = q->rear= NULL;
     return -1;
   }
-  else
-  {
+  else {
     q->front=q->front->link;
     free(temp);
-    if(q->front==NULL)
-    {
+    if(q->front==NULL) {
       q->rear=NULL;
     }
     return temp->Data;
   }
 }
 
-int queue_size(queue *q)
-{
+int queue_size(queue *q) {
   node *temp;
   temp=q->front;
-  int cnt=0;
-  while(temp)
-  {
+  int count=0;
+  while(temp) {
     temp=temp->link;
-    cnt++;
+    count++;
   }
-  return cnt;
+  return count;
 }
 
-void queue_reset(queue *q)
-{
+void queue_reset(queue *q) {
   node *temp;
   node *a;
   temp=q->front;
   a=temp;
-  while(temp!=NULL)
-  {
+  while(temp!=NULL) {
     a=temp;
     temp=temp->link;
-free(a);
+    free(a);
   }
   q->front=NULL;
   q->rear=NULL;
-
 }
 
-void queue_print(queue *q)
-{
+void queue_print(queue *q) {
   node *temp;
   temp=q->front;
-  while(temp)
-  {
+  while(temp) {
     printf("%d ",temp->Data);
     temp=temp->link;
   }

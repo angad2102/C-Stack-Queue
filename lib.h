@@ -1,25 +1,27 @@
 #ifndef FOO_H_   /* Include guard */
+
 #define FOO_H_
 
 #include <stdio.h>
 #include <stdlib.h>
-struct stack
-{
+
+struct stack {
  int Data;
  struct stack *link;
 };
-typedef struct stack stack;
-struct node
-{
+
+struct node {
  int Data;
  struct node *link;
 };
-typedef struct node node;
-struct queue
-{
-  node *front;
-  node *rear;
+
+struct queue {
+  struct node *front;
+  struct node *rear;
 };
+
+typedef struct node node;
+typedef struct stack stack;
 typedef struct queue queue;
 
 void stack_init(stack *si);
