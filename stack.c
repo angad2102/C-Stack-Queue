@@ -1,5 +1,4 @@
 #include "lib.h"
-
 void stack_init(stack *si) {
   stack *top;
   top=NULL;
